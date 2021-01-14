@@ -136,12 +136,12 @@ withToxiproxyServer f =
     server = proc "toxiproxy-cmd" []
 
 version :: Version
-version = Version "v2.1.3"
+version = Version "v2.1.4"
 
 proxyUrl :: BaseUrl
 proxyUrl = BaseUrl Http "127.0.0.1" 4444 ""
 
-runThroughProxy :: ClientM a -> IO (Either ServantError a)
+runThroughProxy :: ClientM a -> IO (Either ClientError a)
 runThroughProxy f = do
   manager <- newManager defaultManagerSettings
   runClientM f (ClientEnv manager proxyUrl Nothing)

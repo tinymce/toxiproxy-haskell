@@ -144,4 +144,4 @@ proxyUrl = BaseUrl Http "127.0.0.1" 4444 ""
 runThroughProxy :: ClientM a -> IO (Either ClientError a)
 runThroughProxy f = do
   manager <- newManager defaultManagerSettings
-  runClientM f (ClientEnv manager proxyUrl Nothing)
+  runClientM f (mkClientEnv manager proxyUrl)

@@ -262,7 +262,7 @@ run = run' toxiproxyUrl
 run' :: BaseUrl -> ClientM a -> IO (Either ClientError a)
 run' url f = do
   manager <- newManager defaultManagerSettings
-  runClientM f (ClientEnv manager url Nothing)
+  runClientM f (mkClientEnv manager url)
 
 -- | Given an enabled proxy, disable the proxy, run the given action and then re-enable
 --   the proxy.
